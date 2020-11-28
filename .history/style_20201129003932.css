@@ -1,0 +1,10 @@
+#root{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 1;
+}
+
+#planet{
+    background-color: aliceblue;
+}
