@@ -3,7 +3,6 @@
       <div id="planet">
         <img v-bind:src="url" />
       </div>
-      <div id="satellite" class="spin"></div>
     </div>
 </template>
 
@@ -11,6 +10,14 @@
 export default {
     props:{
         url:String
+    },
+    methods:{
+        add:function(){
+            console.log('planet add')
+        },
+        reduce: function(){
+            console.log('planet_reduce')
+        }
     }
 }
 </script>
@@ -26,23 +33,3 @@ export default {
   height: 100%;
   text-align: center;
 }
-#satellite {
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  text-align: center;
-}
-
-.spin {
-  animation: spin 1.5s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-</style>

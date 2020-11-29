@@ -19,6 +19,14 @@ export default {
       state: "spin",
     };
   },
+  methods:{
+    addSushi(){
+     this.$emit('add_event') 
+    },
+    reduceSushi(){
+      this.$emit('reduce_event')
+    }
+  }
 };
 </script>
 
