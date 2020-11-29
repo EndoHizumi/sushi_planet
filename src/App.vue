@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header v-bind:message="message"></Header>
+    <Controller ref="counter"></Controller>
+    <Planet v-bind:url=food></Planet>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/header.vue"
+import Controller from "./components/controller.vue"
+import Planet from "./components/planet.vue"
+import ChawanmushiImage from "@/assets/Chawan-Mushi.png";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Controller,
+    Planet
+  },
+  data: function () {
+    return {
+      food: ChawanmushiImage,
+      message: "Twinkle, twinkle, little sushi How I wonder what you are."
+    };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-image: url("./assets/maeda3gou1929007_TP_V.jpg");
+  color: whitesmoke;
 }
+
+
+
 </style>
