@@ -1,16 +1,16 @@
 <template>
       <div id="root">
       <div id="planet">
-        <img v-bind:src="url" />
-      </div>
+      <img v-bind:class="state" v-bind:src="url" />
     </div>
 </template>
 
 <script>
 export default {
-    props:{
-        url:String
-    },
+  props: {
+    url: String,
+    state: String,
+  },
     methods:{
         add:function(){
             console.log('planet add')
@@ -23,13 +23,16 @@ export default {
 </script>
 
 <style>
-#root {
-  display: flex;
-  justify-content: center;
-  margin: 50px;
+.rotation {
+  animation: spin 15s linear infinite;
 }
-#planet {
-  background-color: transparent;
-  height: 100%;
-  text-align: center;
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
+</style>

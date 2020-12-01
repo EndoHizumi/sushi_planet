@@ -3,7 +3,7 @@
     <span id="nowState">state:</span>
     <button id="rotateControll" v-on:click="toggle">{{ state }}</button>
     <p>
-      <span>Sushi:{{ count }} yen</span>
+      <span>Sushi: {{ count }} yen</span>
       <br />
       <button id="add" v-on:click="addSushi">+</button>
       <button id="reduce" v-on:click="reduceSushi">-</button>
@@ -19,14 +19,27 @@ export default {
       state: "spin",
     };
   },
-  methods:{
-    addSushi(){
-     this.$emit('add_event') 
+  methods: {
+    addSushi() {
+      this.count++;
+      this.$emit("add_event");
     },
-    reduceSushi(){
-      this.$emit('reduce_event')
-    }
-  }
+    reduceSushi() {
+      if(this.count >0){
+        this.count--;
+        this.$emit("reduce_event");
+      }
+    },
+    toggle() {
+      if (this.state == "spin") {
+        this.state = "stop";
+        this.$emit('toggle_state')
+      } else {
+        this.state = "spin";
+        this.$emit('toggle_state')
+      }
+    },
+  },
 };
 </script>
 

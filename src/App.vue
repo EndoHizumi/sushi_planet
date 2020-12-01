@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Header v-bind:message="message"></Header>
-    <Controller ref="counter" v-on:add_event="sushi_add" v-on:reduce_event="sushi_reduce"></Controller>
-    <Planet v-bind:url=food ref="planet"></Planet>
+    <Controller ref="counter" v-on:add_event="sushi_add" v-on:reduce_event="sushi_reduce" v-on:toggle_state="rotate_toggle"></Controller>
+    <Planet v-bind:url=food v-bind:state=state ref="planet"></Planet>
   </div>
 </template>
 
@@ -22,10 +22,18 @@ export default {
   data: function () {
     return {
       food: ChawanmushiImage,
-      message: "Twinkle, twinkle, little sushi How I wonder what you are."
+      message: "Twinkle, twinkle, little sushi How I wonder what you are.",
+      state: "rotation"
     };
   },
   methods: {
+    rotate_toggle: function(){
+      if (this.state == "rotation") {
+        this.state = "stop";
+      } else {
+        this.state = "rotation";
+      }
+    },
     sushi_add: function(){
       this.$refs.planet.add()
     },
@@ -41,7 +49,24 @@ body {
   background-image: url("./assets/maeda3gou1929007_TP_V.jpg");
   color: whitesmoke;
 }
-
-
+#root {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+#planet {
+  background-color: transparent;
+  height: 100%;
+  text-align: center;
+}
+#satellite {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  text-align: center;
+}
+.stop {
+  filter: grayscale(100%);
+}
 
 </style>
