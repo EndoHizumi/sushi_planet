@@ -1,5 +1,5 @@
 <template>
-  <div id="satellite" class="spin">
+  <div id="satellite" v-bind:style="spinObject">
     <div v-for="food in foods" v-bind:key="food.index">
       <span v-bind:class="position_list[food.index]">{{food.item}}</span>
     </div>
@@ -8,13 +8,20 @@
 
 <script>
 export default {
-  components: {
+  props:{
+    speed: Number
   },
   data: function () {
     return {
       count: 0,
       foods: [],
       position_list: ["left_up", "right_up", "left_bottom", "right_bottom"],
+      spinObject: {
+        "animation-name":  "spin",
+        "animation-duration": this.speed + "s",
+        "animation-timing-function": "linear",
+        "animation-iteration-count": "infinite"
+      }
     };
   },
   methods: {
@@ -22,12 +29,11 @@ export default {
       return this.count
     },
     add: function () {
-      var food_num = this.foods.length;
-      this.foods.push({ index: food_num, item: "🍣" });
+      this.foods.push({ index: this.count, item: "🍣" });
       this.count++
     },
     reduce: function () {
-      if (this.foods.length > 0) {
+      if (this.count > 0) {
         this.foods.pop();
         this.count--
       }
@@ -57,10 +63,6 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-}
-
-.spin {
-  animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {

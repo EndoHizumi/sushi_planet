@@ -4,9 +4,10 @@
       <img v-bind:class="state" v-bind:src="url" />
     </div>
     <Satelitte
-      v-for="num of satellite_nums"
-      v-bind:key="num"
+      v-for="data of satellite_data"
+      v-bind:key="data.index"
       v-bind:ref="'satelitte'"
+      v-bind:speed="data.spinSpeed"
     ></Satelitte>
   </div>
 </template>
@@ -21,24 +22,32 @@ export default {
   },
   data: function () {
     return {
-      satellite_nums: 1,
+      speed: 1.5,
+      satellite_data: [{ index: 1, spinSpeed: 1.5 }],
     };
   },
   methods: {
     add: function () {
-      let current_satelitte = this.$refs['satelitte'][this.satellite_nums -1]
-      if (current_satelitte.get_count() > 2) {
-        this.satellite_nums++
-      }
+      let satellite_num = this.satellite_data.length;
+      let current_satelitte = this.$refs["satelitte"][satellite_num - 1];
       current_satelitte.add();
+      if (current_satelitte.get_count() > 3) {
+        this.satellite_data.push({
+          index: satellite_num + 1,
+          spinSpeed: (this.speed + (satellite_num * 0.2)),
+        });
+      }
     },
     reduce: function () {
-      let current_satelitte = this.$refs['satelitte'][this.satellite_nums -1]
-      if (current_satelitte.get_count() > 0) {
-        this.satellite_nums--
-        current_satelitte = this.$refs['satelitte'][this.satellite_nums -1]
+      let satellite_num = this.satellite_data.length - 1;
+      let current_satelitte = this.$refs["satelitte"][satellite_num - 1];
+      if (current_satelitte.get_count() <= 0 && satellite_num > 0) {
+        this.satellite_data.pop();
+        current_satelitte = this.$refs["satelitte"][satellite_num - 1];
       }
-      current_satelitte.reduce();
+      if (current_satelitte.get_count() > 0) {
+        current_satelitte.reduce();
+      }
     },
   },
 };
@@ -46,7 +55,7 @@ export default {
 
 <style>
 .rotation {
-  animation: spin 15s linear infinite;
+  animation: spin 50s linear infinite;
 }
 
 @keyframes spin {
