@@ -49,6 +49,9 @@ export default {
         current_satelitte.reduce();
       }
     },
+    die: function(){
+      this.satellite_data.length = 0
+    }
   },
 };
 </script>
@@ -56,6 +59,10 @@ export default {
 <style>
 .rotation {
   animation: spin 50s linear infinite;
+}
+
+.die {
+  filter: grayscale(100%);
 }
 
 @keyframes spin {

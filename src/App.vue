@@ -23,15 +23,19 @@ export default {
     return {
       food: ChawanmushiImage,
       message: "Twinkle, twinkle, little sushi How I wonder what you are.",
+      state: "rotation",
       count: 0
     };
   },
   methods: {
     rotate_toggle: function(){
       if (this.state == "rotation") {
-        this.state = "stop";
+        this.state = "die";
+        this.message = "Ah, the planet has died because of you..."
+        this.$refs.planet.die()
       } else {
         this.state = "rotation";
+        this.message = "Twinkle, twinkle, little sushi How I wonder what you are."
       }
     },
     sushi_add: function(){
@@ -67,8 +71,6 @@ body {
   height: 250px;
   text-align: center;
 }
-.stop {
-  filter: grayscale(100%);
-}
+
 
 </style>
