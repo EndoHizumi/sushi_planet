@@ -13,29 +13,23 @@
 
 <script>
 export default {
-  data: function () {
-    return {
-      count: 0,
-      state: "spin",
-    };
+  props: {
+      count: Number,
+      state: String,
   },
   methods: {
     addSushi() {
-      this.count++;
       this.$emit("add_event");
     },
     reduceSushi() {
       if(this.count >0){
-        this.count--;
         this.$emit("reduce_event");
       }
     },
     toggle() {
       if (this.state == "spin") {
-        this.state = "stop";
         this.$emit('toggle_state')
       } else {
-        this.state = "spin";
         this.$emit('toggle_state')
       }
     },

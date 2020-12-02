@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header v-bind:message="message"></Header>
-    <Controller ref="counter" v-on:add_event="sushi_add" v-on:reduce_event="sushi_reduce" v-on:toggle_state="rotate_toggle"></Controller>
+    <Controller v-bind:state=state v-bind:count=count v-on:add_event="sushi_add" v-on:reduce_event="sushi_reduce" v-on:toggle_state="rotate_toggle"></Controller>
     <Planet v-bind:url=food v-bind:state=state ref="planet"></Planet>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     return {
       food: ChawanmushiImage,
       message: "Twinkle, twinkle, little sushi How I wonder what you are.",
-      state: "rotation"
+      count: 0
     };
   },
   methods: {
@@ -35,9 +35,11 @@ export default {
       }
     },
     sushi_add: function(){
+      this.count++ 
       this.$refs.planet.add()
     },
     sushi_reduce: function(){
+      this.count-- 
       this.$refs.planet.reduce()
     }
   }
