@@ -14,6 +14,9 @@ import ChawanmushiImage from "@/assets/Chawan-Mushi.png";
 
 export default {
   name: "App",
+  mounted: function(){
+    this.sushi_add()
+  },
   components: {
     Header,
     Controller,

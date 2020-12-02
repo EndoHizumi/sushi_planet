@@ -22,8 +22,7 @@ export default {
   },
   data: function () {
     return {
-      speed: 1.5,
-      satellite_data: [{ index: 1, spinSpeed: 1.5 }],
+      satellite_data: [{ index: 1, spinSpeed: 0 }],
     };
   },
   methods: {
@@ -34,7 +33,7 @@ export default {
       if (current_satelitte.get_count() > 3) {
         this.satellite_data.push({
           index: satellite_num + 1,
-          spinSpeed: (this.speed + (satellite_num * 0.2)),
+          spinSpeed: satellite_num * 0.2,
         });
       }
     },
