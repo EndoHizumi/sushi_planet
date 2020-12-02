@@ -50,6 +50,12 @@ export default {
     },
     die: function(){
       this.satellite_data.length = 0
+    },
+    reborn: function(){
+      this.satellite_data.push({
+          index: 1,
+          spinSpeed: 0,
+        });
     }
   },
 };

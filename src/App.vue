@@ -36,9 +36,11 @@ export default {
         this.state = "die";
         this.message = "Ah, the planet has died because of you..."
         this.$refs.planet.die()
+        this.count = 0
       } else {
         this.state = "rotation";
         this.message = "Twinkle, twinkle, little sushi How I wonder what you are."
+        this.$refs.planet.reborn()
       }
     },
     sushi_add: function(){
