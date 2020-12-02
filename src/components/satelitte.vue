@@ -18,9 +18,10 @@ export default {
       position_list: ["left_up", "right_up", "left_bottom", "right_bottom"],
       spinObject: {
         "animation-name":  "spin",
-        "animation-duration": this.speed + "s",
+        "animation-duration": "1.5s",
         "animation-timing-function": "linear",
-        "animation-iteration-count": "infinite"
+        "animation-iteration-count": "infinite",
+        "animation-delay": this.speed + "s"
       }
     };
   },
