@@ -25,27 +25,30 @@ export default {
       satellite_data: [{ index: 1, spinSpeed: 0 }],
     };
   },
+  computed:{
+    satellite_num: function(){
+      return this.satellite_data.length
+    },
+    current_satelitte: function(){
+      return this.$refs["satelitte"][this.satellite_num - 1];
+    }
+  },
   methods: {
     add: function () {
-      let satellite_num = this.satellite_data.length;
-      let current_satelitte = this.$refs["satelitte"][satellite_num - 1];
-      current_satelitte.add();
-      if (current_satelitte.get_count() > 3) {
+      this.current_satelitte.add();
+      if (this.current_satelitte.get_count() > 3) {
         this.satellite_data.push({
-          index: satellite_num + 1,
-          spinSpeed: satellite_num * 0.2,
+          index: this.satellite_num + 1,
+          spinSpeed: this.satellite_num * 0.2,
         });
       }
     },
     reduce: function () {
-      let satellite_num = this.satellite_data.length - 1;
-      let current_satelitte = this.$refs["satelitte"][satellite_num - 1];
-      if (current_satelitte.get_count() <= 0 && satellite_num > 0) {
+      if (this.current_satelitte.get_count() <= 0 && this.satellite_num > 0) {
         this.satellite_data.pop();
-        current_satelitte = this.$refs["satelitte"][satellite_num - 1];
       }
-      if (current_satelitte.get_count() > 0) {
-        current_satelitte.reduce();
+      if (this.current_satelitte.get_count() > 0) {
+        this.current_satelitte.reduce();
       }
     },
     die: function(){
